@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace SysControlVivero.EntidadesDeNegocio
     public class Cliente
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCliente { get; set; }
 
         [Required]
@@ -27,6 +29,9 @@ namespace SysControlVivero.EntidadesDeNegocio
         [Required]
         [StringLength(8, ErrorMessage = "Maximo 9 caracteres")]
         public string Telefono { get; set; }
+
+        [NotMapped]
+        public int Top_Aux { get; set; }
 
         //public List<Factura> facturas { get; set; }
     }

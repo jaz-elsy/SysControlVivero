@@ -62,5 +62,29 @@ namespace SysControlVivero.AccesoADatos
             }
             return roles;
         }
+
+        internal static IQueryable<Cliente> QuerySelect(IQueryable<Cliente> pQuery, Cliente pCliente)
+        {
+            if (pCliente.IdCliente > 0)
+                pQuery = pQuery.Where(s => s.IdCliente == pCliente.IdCliente);
+            if (!string.IsNullOrWhiteSpace(pCliente.Nombre))
+                pQuery = pQuery.Where(s => s.Nombre.Contains(pCliente.Nombre));
+            pQuery = pQuery.OrderByDescending(s => s.IdCliente).AsQueryable();
+            if (pCliente.Top_Aux > 0)
+                pQuery = pQuery.Take(pCliente.Top_Aux).AsQueryable();
+            return pQuery;
+        }
+
+        public static async Task<List<Cliente>> BuscarAsync(Cliente pCliente)
+        {
+            var clientes = new List<Cliente>();
+            using (var bdContexto = new BDContexto())
+            {
+                var select = bdContexto.Cliente.AsQueryable();
+                select = QuerySelect(select, pCliente);
+                clientes = await select.ToListAsync();
+            }
+            return clientes;
+        }
     }
 }
