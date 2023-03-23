@@ -55,12 +55,12 @@ namespace SysControlVivero.AccesoADatos
         }
         public static async Task<List<Cliente>> ObtenerTodosAsync()
         {
-            var roles = new List<Cliente>();
+            var clientes = new List<Cliente>();
             using (var bdContexto = new BDContexto())
             {
-                roles = await bdContexto.Cliente.ToListAsync();
+                clientes = await bdContexto.Cliente.ToListAsync();
             }
-            return roles;
+            return clientes;
         }
 
         internal static IQueryable<Cliente> QuerySelect(IQueryable<Cliente> pQuery, Cliente pCliente)

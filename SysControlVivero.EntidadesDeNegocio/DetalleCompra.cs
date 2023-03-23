@@ -33,6 +33,9 @@ namespace SysControlVivero.EntidadesDeNegocio
         [RegularExpression(@"^\d{0,8}(\.\d{1,2})?$")]
         public decimal PrecioTotal { get; set; }
 
+        [NotMapped]
+        public int Top_Aux { get; set; }
+
         //public List<Producto> productos { get; set; }
     }
 }
