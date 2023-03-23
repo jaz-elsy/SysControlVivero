@@ -11,7 +11,7 @@ namespace SysControlVivero.AccesoADatos
 {
     public class BDContexto : DbContext
     {
-        public DbSet<Cliente> Rol { get; set; }
+        public DbSet<Rol> Rol { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

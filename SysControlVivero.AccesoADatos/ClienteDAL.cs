@@ -49,7 +49,7 @@ namespace SysControlVivero.AccesoADatos
             var cliente = new Cliente();
             using (var bdContexto = new BDContexto())
             {
-                cliente = await bdContexto.Rol.FirstOrDefaultAsync(s => s.Id == pCliente.Id);
+                cliente = await bdContexto.Cliente.FirstOrDefaultAsync(s => s.IdCliente == pCliente.IdCliente);
             }
             return cliente;
         }
@@ -58,7 +58,7 @@ namespace SysControlVivero.AccesoADatos
             var roles = new List<Cliente>();
             using (var bdContexto = new BDContexto())
             {
-                roles = await bdContexto.Rol.ToListAsync();
+                roles = await bdContexto.Cliente.ToListAsync();
             }
             return roles;
         }
