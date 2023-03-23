@@ -11,8 +11,9 @@ namespace SysControlVivero.AccesoADatos
 {
     public class BDContexto : DbContext
     {
-        public DbSet<Rol> Rol { get; set; }
+        public DbSet<Cliente> Rol { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-DEV01\SQLEXPRESS02;Initial Catalog=SeguridadWebdb;Integrated Security=True");

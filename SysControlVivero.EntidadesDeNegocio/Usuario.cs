@@ -42,7 +42,7 @@ namespace SysControlVivero.EntidadesDeNegocio
         [Display(Name = "Fecha registro")]
         public DateTime FechaRegistro { get; set; }
 
-        public Rol Rol { get; set; }
+        public Cliente Rol { get; set; }
 
         [NotMapped]
         public int Top_Aux { get; set; }

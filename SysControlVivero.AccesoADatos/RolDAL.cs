@@ -10,7 +10,7 @@ namespace SysControlVivero.AccesoADatos
 {
     public class RolDAL
     {
-        public static async Task<int> CrearAsync(Rol pRol)
+        /*public static async Task<int> CrearAsync(Cliente pRol)
         {
             int result = 0;
             using (var bdContexto = new BDContexto())
@@ -20,7 +20,7 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
-        public static async Task<int> ModificarAsync(Rol pRol)
+        public static async Task<int> ModificarAsync(Cliente pRol)
         {
             int result = 0;
             using (var bdContexto = new BDContexto())
@@ -32,7 +32,7 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
-        public static async Task<int> EliminarAsync(Rol pRol)
+        public static async Task<int> EliminarAsync(Cliente pRol)
         {
             int result = 0;
             using (var bdContexto = new BDContexto())
@@ -43,25 +43,25 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
-        public static async Task<Rol> ObtenerPorIdAsync(Rol pRol)
+        public static async Task<Cliente> ObtenerPorIdAsync(Cliente pRol)
         {
-            var rol = new Rol();
+            var rol = new Cliente();
             using (var bdContexto = new BDContexto())
             {
                 rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.IdRol == pRol.IdRol);
             }
             return rol;
         }
-        public static async Task<List<Rol>> ObtenerTodosAsync()
+        public static async Task<List<Cliente>> ObtenerTodosAsync()
         {
-            var roles = new List<Rol>();
+            var roles = new List<Cliente>();
             using (var bdContexto = new BDContexto())
             {
                 roles = await bdContexto.Rol.ToListAsync();
             }
             return roles;
         }
-        internal static IQueryable<Rol> QuerySelect(IQueryable<Rol> pQuery, Rol pRol)
+        internal static IQueryable<Cliente> QuerySelect(IQueryable<Cliente> pQuery, Cliente pRol)
         {
             if (pRol.IdRol > 0)
                 pQuery = pQuery.Where(s => s.IdRol == pRol.IdRol);
@@ -72,9 +72,9 @@ namespace SysControlVivero.AccesoADatos
                 pQuery = pQuery.Take(pRol.Top_Aux).AsQueryable();
             return pQuery;
         }
-        public static async Task<List<Rol>> BuscarAsync(Rol pRol)
+        public static async Task<List<Cliente>> BuscarAsync(Cliente pRol)
         {
-            var roles = new List<Rol>();
+            var roles = new List<Cliente>();
             using (var bdContexto = new BDContexto())
             {
                 var select = bdContexto.Rol.AsQueryable();
@@ -82,6 +82,6 @@ namespace SysControlVivero.AccesoADatos
                 roles = await select.ToListAsync();
             }
             return roles;
-        }
+        }*/
     }
 }

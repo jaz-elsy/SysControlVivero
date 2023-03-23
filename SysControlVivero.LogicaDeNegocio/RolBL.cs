@@ -10,29 +10,29 @@ namespace SysControlVivero.LogicaDeNegocio
 {
     public class RolBL
     {
-        public async Task<int> CrearAsync(Rol pRol)
+        /*public async Task<int> CrearAsync(Cliente pRol)
         {
             return await RolDAL.CrearAsync(pRol);
         }
-        public async Task<int> ModificarAsync(Rol pRol)
+        public async Task<int> ModificarAsync(Cliente pRol)
         {
             return await RolDAL.ModificarAsync(pRol);
         }
-        public async Task<int> EliminarAsync(Rol pRol)
+        public async Task<int> EliminarAsync(Cliente pRol)
         {
             return await RolDAL.EliminarAsync(pRol);
         }
-        public async Task<Rol> ObtenerPorIdAsync(Rol pRol)
+        public async Task<Cliente> ObtenerPorIdAsync(Cliente pRol)
         {
             return await RolDAL.ObtenerPorIdAsync(pRol);
         }
-        public async Task<List<Rol>> ObtenerTodosAsync()
+        public async Task<List<Cliente>> ObtenerTodosAsync()
         {
             return await RolDAL.ObtenerTodosAsync();
         }
-        public async Task<List<Rol>> BuscarAsync(Rol pRol)
+        public async Task<List<Cliente>> BuscarAsync(Cliente pRol)
         {
             return await RolDAL.BuscarAsync(pRol);
-        }
+        }*/
     }
 }
