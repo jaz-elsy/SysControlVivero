@@ -20,6 +20,8 @@ namespace SysControlVivero.EntidadesDeNegocio
         public string Descripcion { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
-        
+
+        public List<Producto>? productos { get; set; }
+
     }
 }

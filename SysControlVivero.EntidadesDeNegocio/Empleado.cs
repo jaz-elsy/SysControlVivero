@@ -29,5 +29,8 @@ namespace SysControlVivero.EntidadesDeNegocio
         public string Cargo { get; set; }
         [NotMapped]
         public int Top_Aux { get; set; }
+
+        //public List<Factura> facturas { get; set; }
+        public Usuario? usuario { get; set; }
     }
 }
