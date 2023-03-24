@@ -15,8 +15,8 @@ namespace SysControlVivero.AccesoADatos
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<DetalleCompra> DetalleCompra { get; set; }
-
-
+        public DbSet<Producto> Producto { get; set; }
+        public DbSet<Inventario> Inventario { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Empleado> Empleado { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
