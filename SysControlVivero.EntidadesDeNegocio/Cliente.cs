@@ -33,6 +33,11 @@ namespace SysControlVivero.EntidadesDeNegocio
         [NotMapped]
         public int Top_Aux { get; set; }
 
-        //public List<Factura> facturas { get; set; }
+        public List<Factura> facturas { get; set; }
+
+        public static implicit operator Cliente(Rol v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

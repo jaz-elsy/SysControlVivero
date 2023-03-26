@@ -12,7 +12,7 @@ namespace SysControlVivero.EntidadesDeNegocio
     public class Usuario
     {
         [Key]
-        public int IdUsuario { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("Rol")]
         [Required(ErrorMessage = "Rol es obligatorio")]
