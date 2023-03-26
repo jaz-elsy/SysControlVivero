@@ -25,7 +25,7 @@ namespace SysControlVivero.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.IdRol == pRol.IdRol);
+                var rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.Id == pRol.Id);
                 rol.Nombre = pRol.Nombre;
                 bdContexto.Update(rol);
                 result = await bdContexto.SaveChangesAsync();
@@ -37,7 +37,7 @@ namespace SysControlVivero.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.IdRol == pRol.IdRol);
+                var rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.Id == pRol.Id);
                 bdContexto.Rol.Remove(rol);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -48,7 +48,7 @@ namespace SysControlVivero.AccesoADatos
             var rol = new Rol();
             using (var bdContexto = new BDContexto())
             {
-                rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.IdRol == pRol.IdRol);
+                rol = await bdContexto.Rol.FirstOrDefaultAsync(s => s.Id == pRol.Id);
             }
             return rol;
         }
@@ -63,11 +63,11 @@ namespace SysControlVivero.AccesoADatos
         }
         internal static IQueryable<Rol> QuerySelect(IQueryable<Rol> pQuery, Rol pRol)
         {
-            if (pRol.IdRol > 0)
-                pQuery = pQuery.Where(s => s.IdRol == pRol.IdRol);
+            if (pRol.Id > 0)
+                pQuery = pQuery.Where(s => s.Id == pRol.Id);
             if (!string.IsNullOrWhiteSpace(pRol.Nombre))
                 pQuery = pQuery.Where(s => s.Nombre.Contains(pRol.Nombre));
-            pQuery = pQuery.OrderByDescending(s => s.IdRol).AsQueryable();
+            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
             if (pRol.Top_Aux > 0)
                 pQuery = pQuery.Take(pRol.Top_Aux).AsQueryable();
             return pQuery;

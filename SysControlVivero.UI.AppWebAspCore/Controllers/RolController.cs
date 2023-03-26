@@ -27,7 +27,7 @@ namespace SysControlVivero.UI.AppWebAspCore.Controllers
         // GET: RolController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var rol = await rolBL.ObtenerPorIdAsync(new Rol { IdRol = id });
+            var rol = await rolBL.ObtenerPorIdAsync(new Rol { Id = id });
             return View(rol);
         }
 

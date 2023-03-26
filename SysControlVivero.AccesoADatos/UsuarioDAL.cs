@@ -25,8 +25,8 @@ namespace SysControlVivero.AccesoADatos
         private static async Task<bool> ExisteLogin(Usuario pUsuario, BDContexto pDbContext)
         {
             bool result = false;
-            var loginUsuarioExiste = await pDbContext.Usuario.FirstOrDefaultAsync(s => s.Login == pUsuario.Login && s.IdUsuario != pUsuario.IdUsuario);
-            if (loginUsuarioExiste != null && loginUsuarioExiste.IdUsuario > 0 && loginUsuarioExiste.Login == pUsuario.Login)
+            var loginUsuarioExiste = await pDbContext.Usuario.FirstOrDefaultAsync(s => s.Login == pUsuario.Login && s.Id != pUsuario.Id);
+            if (loginUsuarioExiste != null && loginUsuarioExiste.Id > 0 && loginUsuarioExiste.Login == pUsuario.Login)
                 result = true;
             return result;
         }
@@ -57,7 +57,7 @@ namespace SysControlVivero.AccesoADatos
                 bool existeLogin = await ExisteLogin(pUsuario, bdContexto);
                 if (existeLogin == false)
                 {
-                    var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.IdUsuario == pUsuario.IdUsuario);
+                    var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id== pUsuario.Id);
                     usuario.IdRol = pUsuario.IdRol;
                     usuario.Nombre = pUsuario.Nombre;
                     usuario.Apellido = pUsuario.Apellido;
@@ -76,7 +76,7 @@ namespace SysControlVivero.AccesoADatos
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
-                var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.IdUsuario == pUsuario.IdUsuario);
+                var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id == pUsuario.Id);
                 bdContexto.Usuario.Remove(usuario);
                 result = await bdContexto.SaveChangesAsync();
             }
@@ -87,7 +87,7 @@ namespace SysControlVivero.AccesoADatos
             var usuario = new Usuario();
             using (var bdContexto = new BDContexto())
             {
-                usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.IdUsuario == pUsuario.IdUsuario);
+                usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id == pUsuario.Id);
             }
             return usuario;
         }
@@ -102,8 +102,8 @@ namespace SysControlVivero.AccesoADatos
         }
         internal static IQueryable<Usuario> QuerySelect(IQueryable<Usuario> pQuery, Usuario pUsuario)
         {
-            if (pUsuario.IdUsuario > 0)
-                pQuery = pQuery.Where(s => s.IdUsuario == pUsuario.IdUsuario);
+            if (pUsuario.Id > 0)
+                pQuery = pQuery.Where(s => s.Id == pUsuario.Id);
             if (pUsuario.IdRol > 0)
                 pQuery = pQuery.Where(s => s.IdRol == pUsuario.IdRol);
             if (!string.IsNullOrWhiteSpace(pUsuario.Nombre))
@@ -120,7 +120,7 @@ namespace SysControlVivero.AccesoADatos
                 DateTime fechaFinal = fechaInicial.AddDays(1).AddMilliseconds(-1);
                 pQuery = pQuery.Where(s => s.FechaRegistro >= fechaInicial && s.FechaRegistro <= fechaFinal);
             }
-            pQuery = pQuery.OrderByDescending(s => s.IdUsuario).AsQueryable();
+            pQuery = pQuery.OrderByDescending(s => s.Id).AsQueryable();
             if (pUsuario.Top_Aux > 0)
                 pQuery = pQuery.Take(pUsuario.Top_Aux).AsQueryable();
             return pQuery;
@@ -166,7 +166,7 @@ namespace SysControlVivero.AccesoADatos
             EncriptarMD5(usuarioPassAnt);
             using (var bdContexto = new BDContexto())
             {
-                var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.IdUsuario == pUsuario.IdUsuario);
+                var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id == pUsuario.Id);
                 if (usuarioPassAnt.Password == usuario.Password)
                 {
                     EncriptarMD5(pUsuario);
