@@ -30,5 +30,9 @@ namespace SysControlVivero.LogicaDeNegocio
         {
             return await InventarioDAL.ObtenerTodosAsync();
         }
+        public async Task<List<Inventario>> BuscarAsync(Inventario pInventario)
+        {
+            return await InventarioDAL.BuscarAsync(pInventario);
+        }
     }
 }
