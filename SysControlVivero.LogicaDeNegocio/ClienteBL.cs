@@ -22,17 +22,17 @@ namespace SysControlVivero.LogicaDeNegocio
         {
             return await ClienteDAL.EliminarAsync(pCliente);
         }
-        public async Task<Cliente> ObtenerPorIdAsync(Cliente pRol)
+        public async Task<Cliente> ObtenerPorIdAsync(Cliente pCliente)
         {
-            return await ClienteDAL.ObtenerPorIdAsync(pRol);
+            return await ClienteDAL.ObtenerPorIdAsync(pCliente);
         }
         public async Task<List<Cliente>> ObtenerTodosAsync()
         {
             return await ClienteDAL.ObtenerTodosAsync();
         }
-        public async Task<List<Cliente>> BuscarAsync(Cliente pRol)
+        public async Task<List<Cliente>> BuscarAsync(Cliente pCliente)
         {
-            return await ClienteDAL.BuscarAsync(pRol);
+            return await ClienteDAL.BuscarAsync(pCliente);
         }
     }
 }

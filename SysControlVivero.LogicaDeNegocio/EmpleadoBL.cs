@@ -26,5 +26,13 @@ namespace SysControlVivero.LogicaDeNegocio
         {
             return await EmpleadoDAL.ObtenerPorIdAsync(pempleado);
         }
+        public async Task<List<Empleado>> ObtenerTodosAsync()
+        {
+            return await EmpleadoDAL.ObtenerTodosAsync();
+        }
+        public async Task<List<Empleado>> BuscarAsync(Empleado pEmpleado)
+        {
+            return await EmpleadoDAL.BuscarAsync(pEmpleado);
+        }
     }
 }

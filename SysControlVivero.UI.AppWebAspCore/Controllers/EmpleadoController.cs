@@ -1,75 +1,109 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using SysControlVivero.LogicaDeNegocio;
+using SysControlVivero.EntidadesDeNegocio;
+using SysControlVivero.AccesoADatos;
 
 namespace SysControlVivero.UI.AppWebAspCore.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class EmpleadoController : Controller
     {
-        public IActionResult Index()
+        EmpleadoBL empleadoBL = new EmpleadoBL();
+        // GET: EmpleadoController
+        public async Task<IActionResult> Index(Empleado pEmpleado = null)
         {
-            return View();
+            if (pEmpleado == null)
+                pEmpleado = new Empleado();
+            if (pEmpleado.Top_Aux == 0)
+                pEmpleado.Top_Aux = 10;
+            else if (pEmpleado.Top_Aux == -1)
+                pEmpleado.Top_Aux = 0;
+            var roles = await empleadoBL.BuscarAsync(pEmpleado);
+            ViewBag.Top = pEmpleado.Top_Aux;
+            return View(roles);
         }
+
         // GET: EmpleadoController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var empleado = await empleadoBL.ObtenerPorIdAsync(new Empleado { IdEmpleado = id });
+            return View(empleado);
         }
+
         // GET: EmpleadoController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
+            ViewBag.Error = "";
             return View();
         }
+
         // POST: EmpleadoContoller/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Empleado pEmpleado)
         {
             try
             {
+                int result = await empleadoBL.CrearAsync(pEmpleado);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                return View(pEmpleado);
             }
         }
 
         // GET: EmpleadoController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(Empleado pEmpleado)
         {
-            return View();
+            var empleado = await empleadoBL.ObtenerPorIdAsync(pEmpleado);
+            ViewBag.Error = "";
+            return View(empleado);
         }
+
         // POST: EmpleadoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Empleado pEmpleado)
         {
             try
             {
+                int result = await empleadoBL.ModificarAsync(pEmpleado);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                return View(pEmpleado);
             }
         }
+
         // GET: EmpleadoController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Empleado pEmpleado)
         {
-            return View();
+            ViewBag.Error = "";
+            var empleado = await empleadoBL.ObtenerPorIdAsync(pEmpleado);
+            return View(empleado);
         }
+
         // POST: EmpleadoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Empleado pEmpleado)
         {
             try
             {
+                int result = await empleadoBL.EliminarAsync(pEmpleado);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                return View(pEmpleado);
             }
         }
     }
