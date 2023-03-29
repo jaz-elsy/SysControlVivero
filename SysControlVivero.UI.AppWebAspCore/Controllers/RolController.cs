@@ -4,9 +4,10 @@ using SysControlVivero.EntidadesDeNegocio;
 using SysControlVivero.LogicaDeNegocio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace SysControlVivero.UI.AppWebAspCore.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class RolController : Controller
     {
         RolBL rolBL = new RolBL();

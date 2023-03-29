@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace SysControlVivero.UI.AppWebAspCore.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class UsuarioController : Controller
     {
 
@@ -55,17 +55,17 @@ namespace SysControlVivero.UI.AppWebAspCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Usuario pUsuario)
         {
-            try
-            {
+            //try
+            //{
                 int result = await usuarioBL.CrearAsync(pUsuario);
                 return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.Message;
-                ViewBag.Roles = await rolBL.ObtenerTodosAsync();
-                return View(pUsuario);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ViewBag.Error = ex.Message;
+            //    ViewBag.Roles = await rolBL.ObtenerTodosAsync();
+            //    return View(pUsuario);
+            //}
         }
 
         // GET: UsuarioController/Edit/5

@@ -10,7 +10,6 @@ namespace SysControlVivero.LogicaDeNegocio
 {
     public class UsuarioBL
     {
-        #region CRUD
         public async Task<int> CrearAsync(Usuario pUsuario)
         {
             return await UsuarioDAL.CrearAsync(pUsuario);
@@ -35,7 +34,7 @@ namespace SysControlVivero.LogicaDeNegocio
         {
             return await UsuarioDAL.BuscarAsync(pUsuario);
         }
-        #endregion
+
         public async Task<Usuario> LoginAsync(Usuario pUsuario)
         {
             return await UsuarioDAL.LoginAsync(pUsuario);

@@ -22,14 +22,18 @@ namespace SysControlVivero.AccesoADatos
                 pUsuario.Password = strEncriptar;
             }
         }
+
+
         private static async Task<bool> ExisteLogin(Usuario pUsuario, BDContexto pDbContext)
         {
             bool result = false;
-            var loginUsuarioExiste = await pDbContext.Usuario.FirstOrDefaultAsync(s => s.Login == pUsuario.Login && s.Id != pUsuario.Id);
+            var loginUsuarioExiste = await pDbContext.Usuario.FirstOrDefaultAsync(s => s.Login == pUsuario.Login && s.Id != pUsuario.Id); //Aca me busca un usuario en 
             if (loginUsuarioExiste != null && loginUsuarioExiste.Id > 0 && loginUsuarioExiste.Login == pUsuario.Login)
                 result = true;
             return result;
         }
+
+
         #region CRUD
         public static async Task<int> CrearAsync(Usuario pUsuario)
         {
@@ -49,15 +53,18 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
+
+
         public static async Task<int> ModificarAsync(Usuario pUsuario)
         {
             int result = 0;
             using (var bdContexto = new BDContexto())
             {
                 bool existeLogin = await ExisteLogin(pUsuario, bdContexto);
+
                 if (existeLogin == false)
                 {
-                    var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id== pUsuario.Id);
+                    var usuario = await bdContexto.Usuario.FirstOrDefaultAsync(s => s.Id == pUsuario.Id);
                     usuario.IdRol = pUsuario.IdRol;
                     usuario.Nombre = pUsuario.Nombre;
                     usuario.Apellido = pUsuario.Apellido;
@@ -71,6 +78,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
+
+
         public static async Task<int> EliminarAsync(Usuario pUsuario)
         {
             int result = 0;
@@ -82,6 +91,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
+
+
         public static async Task<Usuario> ObtenerPorIdAsync(Usuario pUsuario)
         {
             var usuario = new Usuario();
@@ -91,6 +102,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return usuario;
         }
+
+
         public static async Task<List<Usuario>> ObtenerTodosAsync()
         {
             var usuarios = new List<Usuario>();
@@ -100,6 +113,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return usuarios;
         }
+
+
         internal static IQueryable<Usuario> QuerySelect(IQueryable<Usuario> pQuery, Usuario pUsuario)
         {
             if (pUsuario.Id > 0)
@@ -125,6 +140,8 @@ namespace SysControlVivero.AccesoADatos
                 pQuery = pQuery.Take(pUsuario.Top_Aux).AsQueryable();
             return pQuery;
         }
+
+
         public static async Task<List<Usuario>> BuscarAsync(Usuario pUsuario)
         {
             var Usuarios = new List<Usuario>();
@@ -136,6 +153,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return Usuarios;
         }
+
+
         #endregion
         public static async Task<List<Usuario>> BuscarIncluirRolesAsync(Usuario pUsuario)
         {
@@ -148,6 +167,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return usuarios;
         }
+
+
         public static async Task<Usuario> LoginAsync(Usuario pUsuario)
         {
             var usuario = new Usuario();
@@ -159,6 +180,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return usuario;
         }
+
+
         public static async Task<int> CambiarPasswordAsync(Usuario pUsuario, string pPasswordAnt)
         {
             int result = 0;
@@ -179,5 +202,7 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
+
+
     }
 }
