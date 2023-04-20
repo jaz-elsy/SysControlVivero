@@ -9,7 +9,7 @@ using SysControlVivero.AccesoADatos;
 
 namespace SysControlVivero.UI.AppWebAspCore.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class ClienteController : Controller
     {
         ClienteBL clienteBL = new ClienteBL();

@@ -11,13 +11,17 @@ using System.Security.Claims;
 
 namespace SysControlVivero.UI.AppWebAspCore.Controllers
 {
+
     //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+
     public class UsuarioController : Controller
     {
 
         UsuarioBL usuarioBL = new UsuarioBL();
         RolBL rolBL = new RolBL();
+
         // GET: UsuarioController
+
         public async Task<IActionResult> Index(Usuario pUsuario = null)
         {
             if (pUsuario == null)

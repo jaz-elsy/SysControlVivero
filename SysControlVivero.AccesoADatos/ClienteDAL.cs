@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SysControlVivero.EntidadesDeNegocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SysControlVivero.EntidadesDeNegocio;
+
 
 namespace SysControlVivero.AccesoADatos
 {
@@ -33,6 +34,8 @@ namespace SysControlVivero.AccesoADatos
             }
             return result;
         }
+
+
         public static async Task<int> EliminarAsync(Cliente pCliente)
         {
             int result = 0;
